@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}users{% endblock title%}
+
+{% block content %} 
+  <h3> Users </h3>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>First name</th>
+      <th>Middle name</th>
+      <th>Last name</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+      <td><a href="{% url 'authentication:user' user.id %}">{{ user.id }}</a></td>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.middle_name }}</td>
+      <td>{{ user.last_name }}</td>
+    </tr>
+    {% empty %}
+      <li>There are no users yet</li>
+    {% endfor %}
+  </table>
+{% endblock content %}

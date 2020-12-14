@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}books{% endblock title%}
+
+{% block content %}
+<h3>Books</h3>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Authors</th>
+    </tr>
+    {% for book in books %}
+    <tr>
+      <td><a href="{% url 'book:book' book.id %}">{{ book.id }}</a></td>
+      <td><a href="{% url 'book:book' book.id %}">{{ book.name }}</a></td>
+      <td>
+        {% for author in book.authors.all %}
+        <a href="{% url 'author:author' author.id %}">{{ author.name }}</a>
+        {% endfor %}
+      </td>
+    </tr>
+    {% empty %}
+      <p>There are no books yet</p>
+    {% endfor %}
+  </table>
+{% endblock content %}
